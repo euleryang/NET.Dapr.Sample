@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="true" namespace="ORMapping" assembly="ORMapping">
+	<class name="TCountry,ORMapping" table="T_COUNTRY" lazy="true">
+
+		<!-- Primary Key(s) -->
+		<id name="CountryCode" column="COUNTRY_CODE" type="AnsiString">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Properties -->
+		<property column="COUNTRY_NAME" type="AnsiString" name="CountryName" not-null="true" length="75" />
+		<property column="CURRENCY_CODE" type="AnsiString" name="CurrencyCode" not-null="true" length="3" />
+		<property column="LANG_CODE" type="AnsiString" name="LangCode" length="5" />
+		
+	</class>
+</hibernate-mapping>

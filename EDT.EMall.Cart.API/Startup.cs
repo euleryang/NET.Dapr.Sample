@@ -1,8 +1,10 @@
+using Dapr.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace EDT.EMall.Cart.API
@@ -19,17 +21,21 @@ namespace EDT.EMall.Cart.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers()
-                .AddDapr();
+            services.AddControllers().AddDapr();
+            //services.add;
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "EDT.EMall.Cart.API", Version = "v1" });
             });
+            //×¢²áDapr.Client×¢²áµ½ÈÝÆ÷ÖÐ
+            //services.AddSingleton(new DaprClientBuilder().Build());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            //loggerFactory.AddProvider();//Ìí¼ÓNLog
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage()
